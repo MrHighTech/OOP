@@ -1,5 +1,7 @@
 package exercise4.university;
 
+import java.util.Objects;
+
 public class Teacher extends Person {
     private String email;
     private String subject;
@@ -34,5 +36,25 @@ public class Teacher extends Person {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    // Equality based on email
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Teacher teacher = (Teacher) o;
+        return Objects.equals(email, teacher.email);
+    }
+
+    public void increaseSalary(int percentage) {
+        this.salary += percentage / 100 * this.salary;
+    }
+
+    public static void increaseSalary(int percentage, Teacher... teachers) {
+        for (Teacher t: teachers) {
+            t.increaseSalary(percentage);
+        }
     }
 }

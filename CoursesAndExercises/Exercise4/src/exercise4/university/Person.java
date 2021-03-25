@@ -37,28 +37,26 @@ public class Person {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) {
+        if (this == obj)
             return true;
-        }
-
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-
-        if (!(obj instanceof Person)) {
+        if (getClass() != obj.getClass())
             return false;
-        }
-
-        Person that = (Person) obj;
-
-        if (this.name == null) {
-            if (that.name != null) return false;
-        } else if (!this.name.equals(that.name)) return false;
-        if (this.surname == null) {
-            if (that.surname != null) return false;
-        } else if (!this.surname.equals(that.surname)) return false;
-
-        return this.age == that.age;
+        Person other = (Person) obj;
+        if (age != other.age)
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (surname == null) {
+            if (other.surname != null)
+                return false;
+        } else if (!surname.equals(other.surname))
+            return false;
+        return true;
     }
 
     @Override
